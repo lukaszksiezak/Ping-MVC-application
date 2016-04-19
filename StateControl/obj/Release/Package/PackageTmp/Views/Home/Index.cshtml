@@ -1,0 +1,140 @@
+﻿@model List<StateControl.Models.Site>
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Status Controller</title>
+        <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap.min.css")" >
+        <link rel="stylesheet" href="@Url.Content("~/Content/font-awesome.min.css")">
+
+        <style type="text/css">
+            html, body {
+                height: 100%;
+                overflow: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            h1 {
+                margin-top: 5%;
+            }
+            table {
+                margin-top: 5%;
+                overflow: auto;
+            }
+            a {
+             color: white;   
+            }
+            a :visited {
+                color:white;
+            }
+            a :hover {
+                color:red;
+            }
+            #outter
+            {
+                width    : 160px;
+                height   : 60px;
+                overflow : hidden;
+                position : relative;
+            }
+
+            #style-iframe {
+                position: relative;
+                top: -20px;
+                left: -620px;
+                width: 1280px;
+                height: 1200px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="container">
+            <h1 align="center">Status Controler</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var site in Model)
+                    {
+                        <tr id="@site.IdName">
+                            <td><i class="fa fa-spinner fa-spin" style="visibility: hidden"></i></td>
+                            <td><a href="@String.Format("{0}main.html",site.SiteAddress)" target="_blank">@site.SiteAddress</a></td>
+                            <td>@site.Description</td>
+                           
+                            <td id="td_@site.IdName"></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+       
+ 
+        <script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")"></script>
+        <script type="text/javascript">
+            
+            $(document).ready(function () {
+
+                var RefreshTable = function() {
+                    $("#4").css("error");
+
+                    @foreach(var siteIterator in Model)
+                    {
+                        @:$("#"+@siteIterator.IdName).children().children().eq(0).css({ 'visibility': 'visible' })
+                                        
+                        @:$.ajax({
+                                            @:type: "POST",
+                                            @:url: '@Url.Action("UpdateStatus", "Home")',
+                                            @:cache: false,
+                                            @:dataType: "JSON",
+                                            @:data: { 'site': JSON.stringify(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(siteIterator))) },
+                                            @:success: function (data) {
+                                                @:    $("#"+@siteIterator.IdName).children().children().eq(0).css({ 'visibility': 'hidden' });
+                                                @:    var _status = data.SiteStatus===0 ? "success" : "error" 
+                                                @:    $('#'+data.IdName).removeClass('success error').addClass(_status); 
+                                                @:    if(data.SiteStatus===0) //if success
+                                                    @:      {
+                                                    @:        $("#"+@siteIterator.IdName).children().children().eq(2).css({ 'visibility': 'visible' })              
+                                                    @:      }
+                                                    @:    else
+                                                    @:      {
+                                                    @:        $("#"+@siteIterator.IdName).children().children().eq(2).css({ 'visibility': 'hidden' }) 
+                                                    @:      }                                                  
+                                                @:    },
+                                            @: error: function () {
+                                                @:    $("#"+@siteIterator.IdName).children().children().eq(0).css({ 'visibility': 'hidden' });
+                                                @:    $("#"+@siteIterator.IdName).children().children().eq(2).css({ 'visibility': 'hidden' })
+                                                @:    }
+                                            @:});
+                                                         }
+                    }
+                var interval = setInterval(RefreshTable, 3000);
+            });
+
+                @foreach (var siteIterator in Model)
+              {
+               //   @siteIterator.GenerateJavaScriptDelayedIframeInjection();
+                    @:var delayed_@siteIterator.IdName = function(){
+                    @:$('#td_@siteIterator.IdName').append('<div id="outter" style="visibility: visible"><iframe allowTransparency="true" src="@String.Format("{0}start.html",siteIterator.SiteAddress)"  id="style-iframe"></iframe></div>');
+                    @:};
+                    @:setTimeout(delayed_@siteIterator.IdName,2000*parseInt(@siteIterator.IdName));     
+              }
+
+
+             var screenHeight= screen.height;
+            var screenWidth = screen.width;
+
+            //var css = $("#style-iframe").pro ('gold', 'green');
+           // $("#myStyle").text(css);
+        
+          </script>
+
+    </body>
+</html>
+
