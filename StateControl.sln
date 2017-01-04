@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StateControl", "StateControl\StateControl.csproj", "{CFC805C5-5246-4061-B35A-2CDFA24106FB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StateControlTests", "StateControlTests\StateControlTests.csproj", "{28F26173-FD80-463C-AC06-C31FFC0B16B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwinBasedStateControl", "OwinBasedStateControl\OwinBasedStateControl.csproj", "{0EBF1A68-FE3E-4FFC-B83A-C2E2B0B98C95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +23,10 @@ Global
 		{28F26173-FD80-463C-AC06-C31FFC0B16B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28F26173-FD80-463C-AC06-C31FFC0B16B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28F26173-FD80-463C-AC06-C31FFC0B16B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EBF1A68-FE3E-4FFC-B83A-C2E2B0B98C95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EBF1A68-FE3E-4FFC-B83A-C2E2B0B98C95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EBF1A68-FE3E-4FFC-B83A-C2E2B0B98C95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EBF1A68-FE3E-4FFC-B83A-C2E2B0B98C95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

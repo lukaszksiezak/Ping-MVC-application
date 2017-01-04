@@ -1,23 +1,23 @@
 <?xml version="1.0"?>
 <Devices>
   <Device>
-	<Ip>192.168.1.7</Ip>
+	<Ip>192.168.0.101</Ip>
 	<Description>Device 1</Description>
   </Device>
   <Device>
-	<Ip>192.168.1.11</Ip>
+	<Ip>192.168.0.100</Ip>
 	<Description>Device 2</Description>
   </Device>
  <Device>
-	<Ip>192.168.1.2</Ip>
+	<Ip>192.168.0.1</Ip>
 	<Description>Device 3</Description>
   </Device>
  <Device>
-	<Ip>192.168.1.3</Ip>
+	<Ip>192.168.0.55</Ip>
 	<Description>Device 4</Description>
   </Device>
   <Device>
-	<Ip>192.168.1.9</Ip>
+	<Ip>192.168.0.102</Ip>
 	<Description>Device 5</Description>
   </Device>
 </Devices>
