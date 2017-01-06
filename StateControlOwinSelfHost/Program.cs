@@ -9,7 +9,7 @@ namespace StateControlOwinSelfHost
     {
         static void Main()
         {
-            string baseAddress = "http://localhost:9000/";
+            string baseAddress = "http://localhost:1337/";
 
             // Start OWIN host 
             using (WebApp.Start<Startup>(url: baseAddress))
@@ -17,7 +17,8 @@ namespace StateControlOwinSelfHost
                 // Create HttpCient and make a request to api/values 
                 HttpClient client = new HttpClient();
 
-                var response = client.GetAsync(baseAddress + "api/values").Result;
+                Console.WriteLine("Waiting for a connection");
+                var response = client.GetAsync(baseAddress + "home/index").Result;
 
             }
 

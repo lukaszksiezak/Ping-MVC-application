@@ -12,12 +12,12 @@ namespace OwinSelfhostSample
             // Configure Web API for self-host. 
             HttpConfiguration config = new HttpConfiguration();
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
+                name: "Default",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            appBuilder.Use(config);
+            appBuilder.UseWebApi(config);
         }
     }
 }
