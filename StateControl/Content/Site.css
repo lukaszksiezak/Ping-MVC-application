@@ -59,3 +59,32 @@ textarea {
 .validation-summary-valid {
     display: none;
 }
+
+html, body {
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+h1 {
+    margin-top: 5%;
+}
+table {
+    margin-top: 5%;
+    overflow: auto;
+}
+a {
+    color: white;   
+}
+a :visited {
+    color:white;
+}
+a :hover {
+    color:red;
+}
+#outter
+{
+    width    : 160px;
+    height   : 60px;
+    overflow : hidden;
+    position : relative;
+}
